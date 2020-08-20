@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wwt.dao.AppMapper">
+  <resultMap id="BaseResultMap" type="com.wwt.entity.App">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="home_url" jdbcType="VARCHAR" property="homeUrl" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="app_describes" jdbcType="VARCHAR" property="appDescribes" />
+    <result column="app_content" jdbcType="VARCHAR" property="appContent" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="up_number" jdbcType="INTEGER" property="upNumber" />
+    <result column="star_number" jdbcType="INTEGER" property="starNumber" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="is_exam" jdbcType="TINYINT" property="isExam" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_code, app_code, logo_url, cover_url, home_url, app_name, app_describes, 
+    app_content, app_type, type_code, up_number, star_number, is_show, create_time, modified_time, 
+    is_exam, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wwt.entity.App">
+    insert into app (id, user_code, app_code, 
+      logo_url, cover_url, home_url, 
+      app_name, app_describes, app_content, 
+      app_type, type_code, up_number, 
+      star_number, is_show, create_time, 
+      modified_time, is_exam, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, #{homeUrl,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{appDescribes,jdbcType=VARCHAR}, #{appContent,jdbcType=VARCHAR}, 
+      #{appType,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{upNumber,jdbcType=INTEGER}, 
+      #{starNumber,jdbcType=INTEGER}, #{isShow,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{isExam,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wwt.entity.App">
+    insert into app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="appCode != null">
+        app_code,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="homeUrl != null">
+        home_url,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="appDescribes != null">
+        app_describes,
+      </if>
+      <if test="appContent != null">
+        app_content,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="upNumber != null">
+        up_number,
+      </if>
+      <if test="starNumber != null">
+        star_number,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="isExam != null">
+        is_exam,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wwt.entity.App">
+    update app
+    <set>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        app_code = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        home_url = #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        app_describes = #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        app_content = #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        up_number = #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        star_number = #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        is_exam = #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wwt.entity.App">
+    update app
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      app_code = #{appCode,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      home_url = #{homeUrl,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      app_describes = #{appDescribes,jdbcType=VARCHAR},
+      app_content = #{appContent,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      up_number = #{upNumber,jdbcType=INTEGER},
+      star_number = #{starNumber,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_exam = #{isExam,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wwt.entity.App">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="home_url" jdbcType="VARCHAR" property="homeUrl" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="app_describes" jdbcType="VARCHAR" property="appDescribes" />
+    <result column="app_content" jdbcType="VARCHAR" property="appContent" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="up_number" jdbcType="INTEGER" property="upNumber" />
+    <result column="star_number" jdbcType="INTEGER" property="starNumber" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="is_exam" jdbcType="TINYINT" property="isExam" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_code, app_code, logo_url, cover_url, home_url, app_name, app_describes, 
+    app_content, app_type, type_code, up_number, star_number, is_show, create_time, modified_time, 
+    is_exam, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wwt.entity.App">
+    insert into app (id, user_code, app_code, 
+      logo_url, cover_url, home_url, 
+      app_name, app_describes, app_content, 
+      app_type, type_code, up_number, 
+      star_number, is_show, create_time, 
+      modified_time, is_exam, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, #{homeUrl,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{appDescribes,jdbcType=VARCHAR}, #{appContent,jdbcType=VARCHAR}, 
+      #{appType,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{upNumber,jdbcType=INTEGER}, 
+      #{starNumber,jdbcType=INTEGER}, #{isShow,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{isExam,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wwt.entity.App">
+    insert into app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="appCode != null">
+        app_code,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="homeUrl != null">
+        home_url,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="appDescribes != null">
+        app_describes,
+      </if>
+      <if test="appContent != null">
+        app_content,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="upNumber != null">
+        up_number,
+      </if>
+      <if test="starNumber != null">
+        star_number,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="isExam != null">
+        is_exam,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wwt.entity.App">
+    update app
+    <set>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        app_code = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        home_url = #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        app_describes = #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        app_content = #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        up_number = #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        star_number = #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        is_exam = #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wwt.entity.App">
+    update app
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      app_code = #{appCode,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      home_url = #{homeUrl,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      app_describes = #{appDescribes,jdbcType=VARCHAR},
+      app_content = #{appContent,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      up_number = #{upNumber,jdbcType=INTEGER},
+      star_number = #{starNumber,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_exam = #{isExam,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wwt.entity.App">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="app_code" jdbcType="VARCHAR" property="appCode" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="home_url" jdbcType="VARCHAR" property="homeUrl" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="app_describes" jdbcType="VARCHAR" property="appDescribes" />
+    <result column="app_content" jdbcType="VARCHAR" property="appContent" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="up_number" jdbcType="INTEGER" property="upNumber" />
+    <result column="star_number" jdbcType="INTEGER" property="starNumber" />
+    <result column="is_show" jdbcType="TINYINT" property="isShow" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="is_exam" jdbcType="TINYINT" property="isExam" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_code, app_code, logo_url, cover_url, home_url, app_name, app_describes, 
+    app_content, app_type, type_code, up_number, star_number, is_show, create_time, modified_time, 
+    is_exam, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from app
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wwt.entity.App">
+    insert into app (id, user_code, app_code, 
+      logo_url, cover_url, home_url, 
+      app_name, app_describes, app_content, 
+      app_type, type_code, up_number, 
+      star_number, is_show, create_time, 
+      modified_time, is_exam, is_delete
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{appCode,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, #{homeUrl,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{appDescribes,jdbcType=VARCHAR}, #{appContent,jdbcType=VARCHAR}, 
+      #{appType,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{upNumber,jdbcType=INTEGER}, 
+      #{starNumber,jdbcType=INTEGER}, #{isShow,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{isExam,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wwt.entity.App">
+    insert into app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="appCode != null">
+        app_code,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="coverUrl != null">
+        cover_url,
+      </if>
+      <if test="homeUrl != null">
+        home_url,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="appDescribes != null">
+        app_describes,
+      </if>
+      <if test="appContent != null">
+        app_content,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="upNumber != null">
+        up_number,
+      </if>
+      <if test="starNumber != null">
+        star_number,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="isExam != null">
+        is_exam,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wwt.entity.App">
+    update app
+    <set>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appCode != null">
+        app_code = #{appCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null">
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="homeUrl != null">
+        home_url = #{homeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appDescribes != null">
+        app_describes = #{appDescribes,jdbcType=VARCHAR},
+      </if>
+      <if test="appContent != null">
+        app_content = #{appContent,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="upNumber != null">
+        up_number = #{upNumber,jdbcType=INTEGER},
+      </if>
+      <if test="starNumber != null">
+        star_number = #{starNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isExam != null">
+        is_exam = #{isExam,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wwt.entity.App">
+    update app
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      app_code = #{appCode,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      home_url = #{homeUrl,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      app_describes = #{appDescribes,jdbcType=VARCHAR},
+      app_content = #{appContent,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      up_number = #{upNumber,jdbcType=INTEGER},
+      star_number = #{starNumber,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_exam = #{isExam,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

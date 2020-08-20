@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.EssayMapper">
+  <resultMap id="BaseResultMap" type="com.blog.entity.Essay">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="essay_code" jdbcType="VARCHAR" property="essayCode" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.entity.Essay">
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, essay_code, title, user_id, type_code, create_time, modified_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from essay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from essay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blog.entity.Essay">
+    insert into essay (id, essay_code, title, 
+      user_id, type_code, create_time, 
+      modified_time, is_delete, context
+      )
+    values (#{id,jdbcType=BIGINT}, #{essayCode,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, #{context,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.entity.Essay">
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="essayCode != null">
+        essay_code,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="essayCode != null">
+        #{essayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blog.entity.Essay">
+    update essay
+    <set>
+      <if test="essayCode != null">
+        essay_code = #{essayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blog.entity.Essay">
+    update essay
+    set essay_code = #{essayCode,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blog.entity.Essay">
+    update essay
+    set essay_code = #{essayCode,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wwt.entity.Essay">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="essay_code" jdbcType="VARCHAR" property="essayCode" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wwt.entity.Essay">
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, essay_code, title, user_id, type_code, create_time, modified_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from essay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from essay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wwt.entity.Essay">
+    insert into essay (id, essay_code, title, 
+      user_id, type_code, create_time, 
+      modified_time, is_delete, context
+      )
+    values (#{id,jdbcType=BIGINT}, #{essayCode,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, #{context,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wwt.entity.Essay">
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="essayCode != null">
+        essay_code,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="essayCode != null">
+        #{essayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wwt.entity.Essay">
+    update essay
+    <set>
+      <if test="essayCode != null">
+        essay_code = #{essayCode,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wwt.entity.Essay">
+    update essay
+    set essay_code = #{essayCode,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wwt.entity.Essay">
+    update essay
+    set essay_code = #{essayCode,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
